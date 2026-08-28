@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { randomUUID } from "crypto";
 import { getPageCount } from "@/lib/rasterize";
-import { pruneOldSessions, saveSession } from "@/lib/store";
+import { saveSession } from "@/lib/store";
 import { runPipeline } from "@/lib/pipeline";
 import type { ExamSession } from "@/lib/types";
 
@@ -11,8 +11,6 @@ export const maxDuration = 300;
 const MAX_FILE_BYTES = 10 * 1024 * 1024; // 10MB, matches Figma copy
 
 export async function POST(req: NextRequest) {
-  pruneOldSessions();
-
   const form = await req.formData();
   const questionPaperFile = form.get("questionPaper");
   const answerSheetFile = form.get("answerSheet");
@@ -86,7 +84,7 @@ export async function POST(req: NextRequest) {
       summary: null,
     };
 
-    saveSession(session);
+    await saveSession(session);
 
     // Blocks until extraction, mapping, and grading all finish — the
     // client shows a staged progress screen for the duration.

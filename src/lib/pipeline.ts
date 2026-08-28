@@ -11,28 +11,28 @@ import type {
   UnmatchedAnswer,
 } from "./types";
 
-function fail(sessionId: string, message: string) {
-  const session = getSession(sessionId);
+async function fail(sessionId: string, message: string) {
+  const session = await getSession(sessionId);
   if (!session) return;
   session.status = "error";
   session.error = message;
-  saveSession(session);
+  await saveSession(session);
 }
 
 export async function runPipeline(sessionId: string) {
-  const session = getSession(sessionId);
+  const session = await getSession(sessionId);
   if (!session) return;
 
   try {
     session.status = "extracting_questions";
-    saveSession(session);
+    await saveSession(session);
     const rawQuestions = await extractQuestions(
       session.questionPaper.bytes,
       session.questionPaper.mimeType
     );
 
     if (rawQuestions.length === 0) {
-      fail(
+      await fail(
         sessionId,
         "Couldn't detect any questions in the question paper. Make sure the file is a clear, readable scan and try again."
       );
@@ -61,7 +61,7 @@ export async function runPipeline(sessionId: string) {
 
     session.questions = questions;
     session.status = "extracting_answers";
-    saveSession(session);
+    await saveSession(session);
 
     const rawAnswers = await extractAnswerBlocks(
       session.answerSheet.bytes,
@@ -83,7 +83,7 @@ export async function runPipeline(sessionId: string) {
 
     session.answerBlocks = answerBlocks;
     session.status = "mapping_grading";
-    saveSession(session);
+    await saveSession(session);
 
     const result = await mapAndGrade(
       questions.map((q) => ({
@@ -163,9 +163,9 @@ export async function runPipeline(sessionId: string) {
       overallFeedback: result.overallFeedback ?? null,
     };
     session.status = "done";
-    saveSession(session);
+    await saveSession(session);
   } catch (err) {
     console.error("Pipeline error", err);
-    fail(sessionId, err instanceof Error ? err.message : "Unknown error");
+    await fail(sessionId, err instanceof Error ? err.message : "Unknown error");
   }
 }

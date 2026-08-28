@@ -11,8 +11,9 @@ sheet where it was answered.
 
 **Pipeline:** `Upload → Extract questions → Extract answers → Map & grade`
 
-1. **Upload** — the teacher uploads both files. They're kept in memory only
-   (no database, no disk persistence — per the assignment's constraints).
+1. **Upload** — the teacher uploads both files. Session data (files +
+   extracted results) is held in a lightweight Redis key-value store, not a
+   relational database, per the assignment's constraints.
 2. **Question extraction** — the question paper (PDF or image) is sent to
    Gemini directly (it reads PDFs and images natively), which returns every
    question in printed order as structured JSON: number, sub-part, label,
@@ -49,31 +50,39 @@ instead of stitching together separate OCR + LLM services.
 
 - **Next.js (App Router, TypeScript, Tailwind CSS)** — single deployable
   app, API routes handle upload and orchestrate the three Gemini calls.
-- **In-memory session store** — an exam session (files, extracted
-  questions/answers, mappings, grading) lives in a `Map` for the life of
-  the server process. No database.
-- **pdfjs-dist** — used twice, for two different jobs: a lightweight
-  Node-side page-count read on upload (no rendering), and full client-side
-  page rendering in the browser for display.
+- **Session store (Upstash Redis)** — an exam session (files, extracted
+  questions/answers, mappings, grading) is stored as one JSON value keyed
+  by session id, with a 1-hour TTL. Not a relational database: no schema,
+  no queries, just a key-value cache — chosen over a plain in-process `Map`
+  because serverless functions run multiple isolated instances, so
+  in-process memory isn't visible across requests that land on different
+  instances.
+- **pdf-lib** — reads PDF page count on upload without rendering (pure JS,
+  no native bindings, no canvas).
+- **pdfjs-dist** — used client-side only, to render PDF pages to canvas in
+  the browser for display.
 
 ## Running locally
 
 ```bash
 npm install
-cp .env.local.example .env.local   # add your Gemini API key
+cp .env.local.example .env.local   # add your Gemini API key + Redis credentials
 npm run dev
 ```
 
-Get a free Gemini API key at https://aistudio.google.com/apikey.
+Get a free Gemini API key at https://aistudio.google.com/apikey. A free
+Upstash Redis database can be created directly from the Vercel dashboard's
+Storage tab (or at upstash.com) — it injects `KV_REST_API_URL` and
+`KV_REST_API_TOKEN` automatically when deployed on Vercel.
 
 ## Assumptions & limitations
 
 - **Single student, single attempt per session.** The assignment scope is
   one question paper + one answer sheet at a time; there's no batch upload
   or roster of students.
-- **In-memory only.** Sessions are lost on server restart and are pruned
-  after an hour / once more than 50 accumulate — acceptable per the
-  assignment's "no database required" constraint, but not durable.
+- **Not durable by design.** Sessions expire after a 1-hour TTL and there's
+  no backup/export — acceptable per the assignment's "no database required"
+  constraint, but not meant to be a permanent record.
 - **Grading is AI-generated, not authoritative.** Marks, correctness, and
   feedback are Gemini's best judgment against the question text — there's
   no answer key input, so subjective or multi-valid-answer questions may
