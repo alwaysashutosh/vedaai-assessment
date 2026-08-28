@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Class 10 Science - Unit Test</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #6b6b6b;
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+  }
+
+  .page-wrap {
+    width: 794px;
+    min-height: 1123px;
+    margin: 30px auto;
+    background: #f5f3ee;
+    position: relative;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.4);
+    overflow: hidden;
+    padding: 55px 60px 70px 60px;
+    box-sizing: border-box;
+  }
+
+  /* subtle paper grain */
+  .page-wrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
+      radial-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
+    background-size: 3px 3px, 5px 5px;
+    background-position: 0 0, 2px 2px;
+    opacity: 0.5;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+  }
+
+  /* faint horizontal scan lines */
+  .page-wrap::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.018) 0px,
+      rgba(0,0,0,0.018) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+    pointer-events: none;
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+    filter: contrast(1.02);
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 6px;
+  }
+
+  .header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    margin: 0 0 4px 0;
+    color: #1c1c1c;
+  }
+
+  .subheader {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #2a2a2a;
+    margin: 18px 0 6px 0;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    padding: 6px 2px;
+  }
+
+  .instructions {
+    font-size: 12.5px;
+    color: #333;
+    margin: 14px 0 26px 0;
+    font-style: italic;
+  }
+
+  .question {
+    margin-bottom: 22px;
+    font-size: 14.5px;
+    color: #1a1a1a;
+    line-height: 1.55;
+  }
+
+  .qrow {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .qtext {
+    flex: 1;
+  }
+
+  .qnum {
+    font-weight: 700;
+    margin-right: 6px;
+  }
+
+  .marks {
+    white-space: nowrap;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+
+  .subpart {
+    margin-left: 26px;
+    margin-top: 8px;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 28px;
+    left: 60px;
+    right: 60px;
+    text-align: center;
+    font-size: 11px;
+    color: #555;
+    border-top: 1px solid #999;
+    padding-top: 6px;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+  <div class="content">
+
+    <div class="header">
+      <h1>Class 10 Science &ndash; Unit Test</h1>
+    </div>
+
+    <div class="subheader">
+      <span>Name: _______________________</span>
+      <span>Roll No: ________</span>
+      <span>Total Marks: 30</span>
+      <span>Time: 1 Hour</span>
+    </div>
+
+    <div class="instructions">
+      Instructions: Attempt all questions. Marks for each question are indicated in brackets.
+    </div>
+
+    <div class="question">
+      <div class="qrow">
+        <div class="qtext"><span class="qnum">1.</span>Define a displacement reaction. Give one example with a balanced chemical equation.</div>
+        <div class="marks">[2]</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="qrow">
+        <div class="qtext"><span class="qnum">2.</span>State Newton's second law of motion and write its mathematical expression.</div>
+        <div class="marks">[3]</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="qrow">
+        <div class="qtext"><span class="qnum">3.</span>Write the chemical formula of baking soda and mention two of its common uses.</div>
+        <div class="marks">[3]</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="qrow">
+        <div class="qtext"><span class="qnum">4.</span>Explain the process of photosynthesis. Draw a neat, labelled diagram of a leaf showing the raw materials and products involved.</div>
+        <div class="marks">[5]</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="qrow">
+        <div class="qtext"><span class="qnum">5.</span>Differentiate between a mixture and a compound. Give one example of each.</div>
+        <div class="marks">[4]</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="qrow">
+        <div class="qtext"><span class="qnum">6.</span>Answer the following:</div>
+      </div>
+
+      <div class="subpart qrow">
+        <div class="qtext">(a) State the SI unit of electric current.</div>
+        <div class="marks">[1]</div>
+      </div>
+
+      <div class="subpart qrow">
+        <div class="qtext">(b) State Ohm's law and write its mathematical expression, defining each term used.</div>
+        <div class="marks">[3]</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="qrow">
+        <div class="qtext"><span class="qnum">7.</span>List two everyday applications of Ohm's law.</div>
+        <div class="marks">[2]</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="qrow">
+        <div class="qtext"><span class="qnum">8.</span>Why is the ozone layer important for life on Earth? Suggest two measures to reduce ozone depletion.</div>
+        <div class="marks">[4]</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">End of question paper</div>
+</div>
+
+</body>
+</html>

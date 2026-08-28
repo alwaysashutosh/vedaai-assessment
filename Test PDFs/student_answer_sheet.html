@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Answer Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #5f5f5f;
+    font-family: 'Caveat', cursive;
+  }
+
+  .page-wrap {
+    width: 794px;
+    min-height: 1123px;
+    margin: 30px auto;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.45);
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  /* ruled notebook paper base */
+  .paper {
+    position: relative;
+    width: 100%;
+    min-height: 1123px;
+    background-color: #f7f5ee;
+    background-image: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 33px,
+        rgba(70,100,170,0.35) 33px,
+        rgba(70,100,170,0.35) 34px
+      );
+    background-position: 0 96px;
+    padding: 60px 50px 70px 90px;
+    box-sizing: border-box;
+  }
+
+  /* red left margin line */
+  .paper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 68px;
+    width: 1.5px;
+    background: rgba(190,40,40,0.55);
+  }
+
+  /* paper grain */
+  .paper::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+      radial-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
+    background-size: 3px 3px, 5px 5px;
+    background-position: 0 0, 2px 2px;
+    opacity: 0.55;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+  }
+
+  /* uneven scan lighting */
+  .lighting {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 15%, rgba(255,255,255,0.35), transparent 55%),
+                radial-gradient(ellipse at 80% 90%, rgba(0,0,0,0.06), transparent 60%);
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  /* faint scan lines */
+  .scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.015) 0px,
+      rgba(0,0,0,0.015) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+    pointer-events: none;
+    z-index: 6;
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .name-line {
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 22px;
+    color: #1a2a6c;
+    margin-bottom: 18px;
+    transform: rotate(-0.6deg);
+  }
+
+  .answer-block {
+    margin-bottom: 24px;
+  }
+
+  .qlabel {
+    font-weight: 600;
+    color: #16206b;
+    font-size: 25px;
+    display: inline-block;
+    margin-right: 6px;
+    transform: rotate(-1deg);
+  }
+
+  .qtext {
+    font-size: 24px;
+    color: #1c2b6b;
+    line-height: 34px;
+    display: inline;
+  }
+
+  .ink-blue { color: #1c2b7a; }
+  .ink-black { color: #1c1c1c; }
+
+  /* slight jitter per line for natural handwriting unevenness */
+  .line { display: block; transform: rotate(-0.4deg) translateY(0px); }
+  .line.l2 { transform: rotate(0.5deg) translateY(1px); }
+  .line.l3 { transform: rotate(-0.3deg) translateY(-1px); }
+  .line.l4 { transform: rotate(0.3deg) translateY(1px); }
+  .line.l5 { transform: rotate(-0.5deg) translateY(0px); }
+  .line.l6 { transform: rotate(0.2deg) translateY(-1px); }
+
+  .continued {
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 19px;
+    color: #333;
+    margin-top: 4px;
+    margin-left: 20px;
+  }
+
+  .margin-note {
+    position: absolute;
+    left: 6px;
+    top: 640px;
+    width: 60px;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 15px;
+    color: #a01818;
+    transform: rotate(-8deg);
+    line-height: 1.15;
+    z-index: 4;
+  }
+
+  .strike {
+    display: inline-block;
+    text-decoration: line-through;
+    text-decoration-color: rgba(28,43,122,0.6);
+  }
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+  <div class="paper">
+    <div class="lighting"></div>
+    <div class="scanlines"></div>
+
+    <div class="content">
+
+      <div class="name-line">Name: Aarav Sharma &nbsp;&nbsp; Roll No: 14</div>
+
+      <div class="answer-block">
+        <span class="qlabel">Q1.</span>
+        <span class="qtext ink-blue">
+          <span class="line">A displacement reaction is a reaction in which a</span>
+          <span class="line l2">more reactive element takes the place of a less</span>
+          <span class="line l3">reactive element in a compound.</span><br>
+          <span class="line l4">Example: Fe + CuSO&#8324; &rarr; FeSO&#8324; + Cu</span>
+        </span>
+      </div>
+
+      <div class="answer-block">
+        <span class="qlabel">Q3.</span>
+        <span class="qtext ink-blue">
+          <span class="line">NaHCO&#8323; is the chemical formula of baking soda.</span><br>
+          <span class="line l2">Uses &ndash; (i) used in cooking (as a leavening agent)</span>
+          <span class="line l3">(ii) used in fire extinguishers</span>
+        </span>
+      </div>
+
+      <div class="answer-block">
+        <span class="qlabel">Q2.</span>
+        <span class="qtext ink-blue">
+          <span class="line">Newton's 2nd law &ndash; the rate of change of momentum</span>
+          <span class="line l2">of a body is <span class="strike">equal</span> directly proportional to the applied</span>
+          <span class="line l3">force and takes place in the direction of the force.</span><br>
+          <span class="line l4">F = ma</span>
+        </span>
+      </div>
+
+      <div class="answer-block">
+        <span class="qlabel">Q4.</span>
+        <span class="qtext ink-black">
+          <span class="line">Photosynthesis is the process by which green</span>
+          <span class="line l2">plants make their own food using sunlight, water</span>
+          <span class="line l3">and carbon dioxide. It takes place in the chloroplast</span>
+          <span class="line l4">of the leaf cells, mainly in the mesophyll. The</span>
+          <span class="line l5">chlorophyll present absorbs sunlight, which is used</span>
+          <span class="line l6">to convert CO&#8322; and H&#8322;O into glucose and oxygen.</span><br>
+          <span class="line">The overall reaction can be written as &ndash;</span><br>
+          <span class="line l2">6CO&#8322; + 6H&#8322;O &rarr; (sunlight, chlorophyll) &rarr; C&#8326;H&#8321;&#8322;O&#8326; + 6O&#8322;</span><br>
+          <span class="line l3">Diagram of leaf &ndash;</span>
+        </span>
+        <div class="continued">...(continued on next page)</div>
+      </div>
+
+      <div class="answer-block">
+        <span class="qlabel">Q6.</span>
+        <span class="qtext ink-blue">
+          <span class="line">(a) SI unit of electric current is Ampere (A).</span><br>
+          <span class="line l2">(b) Ohm's law states that the current flowing through</span>
+          <span class="line l3">a conductor is directly proportional to the potential</span>
+          <span class="line l4">difference across it, provided temperature remains</span>
+          <span class="line l5">constant. V = IR</span>
+        </span>
+      </div>
+
+      <div class="answer-block">
+        <span class="qlabel">Q7.</span>
+        <span class="qtext ink-black">
+          <span class="line">(i) used to calculate resistance in circuits</span><br>
+          <span class="line l2">(ii) used in designing household electrical wiring</span>
+        </span>
+      </div>
+
+    </div>
+
+    <div class="margin-note">revise<br>diagrams<br>before<br>exam!</div>
+
+  </div>
+</div>
+
+</body>
+</html>
